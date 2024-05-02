@@ -119,7 +119,7 @@ def main():
     while True:
 
         current_path = os.getcwd()
-        command = input(f"(PDF) {current_path}> ")
+        command = input(f"(PyDF) {current_path}> ")
 
         if command == "quit":
 
@@ -233,10 +233,26 @@ def main():
         elif command == "c-ls":
 
             if len(combine_list) == 0:
-                cprint("Files aren't existed", attrs=[ColorRGB(0, 0, 100)])
+                cprint("Files aren't existed", attrs=[ColorRGB(100, 100, 100)])
                 
             for i in combine_list:
                 cprint(i, attrs=[ColorRGB(0, 0, 100)])
+
+        elif command == "droppdf":
+
+            drop_file = input("結合リストから除外するファイルを入力：")
+            print(f"{drop_file} を結合リストから除外します。よろしいですか：YES(y) NO(other)")
+            yesno = input(">")
+
+            if (yesno == "y") | (yesno == "Y"):
+
+                combine_list.remove(drop_file)
+                print(f"結合リストから初めの {drop_file} を除外しました")
+
+            else:
+
+                print("キャンセルしました")
+
 
         elif command == "combinepdf":
 
